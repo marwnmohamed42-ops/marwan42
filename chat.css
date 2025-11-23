@@ -1,0 +1,107 @@
+/* خلفية الصفحة */
+body {
+  background-color: #000; /* أسود */
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* صندوق الشات */
+.chat-container {
+  width: 400px;
+  height: 550px;
+  background-color: #1e1e1e; /* رمادي غامق */
+  border: 2px solid #ff8400; /* برتقالي */
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* مساحة الرسائل */
+.messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  color: #fff; /* أبيض للنص */
+}
+
+/* رسالة المستخدم */
+.message.user {
+  background-color: #ff8400; /* برتقالي */
+  color: #000; /* النص أسود لحسن القراءة */
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 10px;
+  text-align: right;
+}
+
+/* رد الروبوت */
+.message.bot {
+  background-color: #333; /* رمادي غامق شوية */
+  color: #fff;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 10px;
+  text-align: left;
+}
+
+/* منطقة الإدخال تحت */
+.input-area {
+  display: flex;
+  padding: 10px;
+  background-color: #111;
+}
+
+/* مربع الكتابة */
+#userInput {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* زر الإرسال */
+#sendBtn {
+  background-color: #ff8400; /* برتقالي */
+  color: #000;
+  border: none;
+  padding: 10px 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#sendBtn:hover {
+  background-color: #ffa64d;
+}
+
+.chat-box {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.user-msg {
+    text-align: right;
+    background-color: #d1ffd6;
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.bot-msg {
+    text-align: left;
+    background-color: #eaeaea;
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 8px;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>دفتر الملاحظات</title>
+    <style>
+        body {
+            background-color: #000; /* خلفية سوداء */
+            color: #ffa500; /* نص برتقالي */
+            font-family: "Tajawal", sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ffa500;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 80%;
+            height: 100px;
+            padding: 10px;
+            border: 2px solid #ffa500;
+            background-color: #111;
+            color: #ffa500;
+            font-size: 18px;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        button {
+            background-color: #ffa500;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .note {
+            background-color: #111;
+            border: 1px solid #ffa500;
+            padding: 10px;
+            margin: 10px auto;
+            width: 80%;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📒 دفتر الملاحظات</h1>
+
+    <textarea id="noteInput" placeholder="اكتب ملاحظتك هنا..."></textarea>
+    <br>
+    <button onclick="addNote()">إضافة الملاحظة</button>
+
+    <div id="notesContainer"></div>
+
+    <script>
+        // عرض الملاحظات المحفوظة عند تحميل الصفحة
+        window.onload = function () {
+            let savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+            savedNotes.forEach(note => displayNote(note));
+        };
+
+        function addNote() {
+            let noteText = document.getElementById("noteInput").value.trim();
+            if (noteText === "") return;
+
+            displayNote(noteText);
+
+            let savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+            savedNotes.push(noteText);
+            localStorage.setItem("notes", JSON.stringify(savedNotes));
+
+            document.getElementById("noteInput").value = "";
+        }
+
+        function displayNote(text) {
+            let container = document.getElementById("notesContainer");
+
+            let noteDiv = document.createElement("div");
+            noteDiv.className = "note";
+            noteDiv.textContent = text;
+
+            let deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "حذف";
+            deleteBtn.className = "delete-btn";
+            deleteBtn.onclick = function () {
+                deleteNote(text);
+                noteDiv.remove();
+            };
+
+            noteDiv.appendChild(deleteBtn);
+            container.appendChild(noteDiv);
+        }
+
+        function deleteNote(text) {
+            let savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+            savedNotes = savedNotes.filter(note => note !== text);
+            localStorage.setItem("notes", JSON.stringify(savedNotes));
+        }
+    </script>
+</body>
+</html>
